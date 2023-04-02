@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amd-backend-auth
+  namespace: amd-backend-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amd-backend-auth
+  template:
+    metadata:
+      labels:
+        app: amd-backend-auth
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      containers:
+      - name: amd-backend-auth
+        image: ghkdtlwns987/project_amd_backend_auth
+        ports:
+        - containerPort: 9000
+      nodeName: worker1

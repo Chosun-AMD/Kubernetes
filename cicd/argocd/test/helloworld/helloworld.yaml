@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloworld
+  labels:
+    name: helloworld
+spec:
+  containers:
+  - name: helloworld
+    image: nginx
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "0.2"
+    ports:
+      - containerPort: 80

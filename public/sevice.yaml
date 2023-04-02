@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: amd-front-svc
+  namespace: amd-front 
+spec:
+  type: NodePort
+  clusterIP: 10.96.200.10
+  selector: 
+    app: amd-front
+  ports:
+  - port: 80	# clusterPort
+    targetPort: 80 # 
+    nodePort: 30030 # nodePort

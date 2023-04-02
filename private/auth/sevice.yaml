@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: amd-backend-auth-svc
+  namespace: amd-backend-auth
+spec:
+  type: NodePort
+  clusterIP: 10.96.100.15
+  selector: 
+    app: amd-backend-auth
+  ports:
+  - port: 9000	# clusterPort
+    targetPort: 9000 # targetPort
+    nodePort: 30031 # nodePort
