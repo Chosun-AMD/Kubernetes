@@ -18,7 +18,7 @@ spec:
         runAsGroup: 0
       containers:
       - name: amd-front
-        image: nginx
+        image: ghkdtlwns987/project_amd_public
         ports:
         - containerPort: 80
       nodeName: worker2
