@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      initContainers:
+        - name: init-mysql
+          image: ghkdtlwns987/amd-user-db
+          command: ["/bin/bash", "-c", "mysql -uroot -p$MYSQL_ROOT_PASSWORD < /path/to/init.sql"]
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /root/Kubernetes/private/mysql
+              subPath: init.sql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: kubernetes-db-admin
+
+      containers:
+        - name: mysql
+          image: ghkdtlwns987/amd-user-db
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: kubernetes-db-admin
+          ports:
+            - containerPort: 3306
+              hostIP: 10.0.0.30
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc

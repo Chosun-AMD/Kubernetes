@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: amd-discoveryservice-svc
+  namespace: amd-discoveryservice
+spec:
+  type: NodePort
+  clusterIP: 10.96.100.30
+  selector:
+    app: amd-discoveryservice
+  ports:
+  - port: 8761	# clusterPort
+    targetPort: 8761 # targetPort
+    nodePort: 30061

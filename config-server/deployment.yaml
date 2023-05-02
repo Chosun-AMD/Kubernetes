@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amd-config
+  namespace: amd-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amd-config
+  template:
+    metadata:
+      labels:
+        app: amd-config
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+
+      containers:
+      - name: amd-config
+        image: ghkdtlwns987/amd-config-server
+        ports:
+        - containerPort: 8889
+        env:
+        - name: spring.rabbitmq.host
+          value: "10.96.100.31"
+        - name: spring.rabbitmq.port
+          value: "5672"
+        - name: spring.profiles.active
+          value: default

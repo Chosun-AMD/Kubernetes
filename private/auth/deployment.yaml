@@ -22,3 +22,8 @@ spec:
         ports:
         - containerPort: 9000
       nodeName: worker1
+      dnsConfig:
+        nameservers:
+          - 10.96.0.10
+        searches:
+          - amd-discoveryservice.svc.cluster.local

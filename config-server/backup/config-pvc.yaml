@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: amd-config-pvc
+  namespace: amd-config
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: "local-storage"
+  selector:
+    matchLabels:
+      pv: amd-config-pv

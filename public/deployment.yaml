@@ -13,6 +13,8 @@ spec:
       labels:
         app: amd-front
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
       securityContext:
         runAsUser: 0
         runAsGroup: 0
@@ -20,5 +22,4 @@ spec:
       - name: amd-front
         image: ghkdtlwns987/project_amd_public
         ports:
-        - containerPort: 80
-      nodeName: worker2
+        - containerPort: 8888

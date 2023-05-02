@@ -1,0 +1,2 @@
+curl -X POST -H "Content-Type: application/json" \
+ -d '{ "email": "cccccccc@naver.com", "name": "cccccccc", "pwd": "cccccccc" }' 10.244.1.62:9000/signup

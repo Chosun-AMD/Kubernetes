@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: amd-config-svc
+  namespace: amd-config
+spec:
+  type: ClusterIP
+  clusterIP: 10.96.100.32
+  selector:
+    app: amd-config
+  ports:
+  - name: amd-config
+    port: 8889
+    targetPort: 8889

@@ -9,6 +9,6 @@ spec:
   selector: 
     app: amd-front
   ports:
-  - port: 80	# clusterPort
-    targetPort: 80 # 
+  - port: 8888	# clusterPort
+    targetPort: 8888 
     nodePort: 30030 # nodePort

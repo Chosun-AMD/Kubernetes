@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-svc
+  namespace: rabbitmq
+spec:
+  type: ClusterIP
+  clusterIP: 10.96.100.31
+  selector:
+    app: rabbitmq
+  ports:
+  - name: rabbitmq
+    port: 5672
+    targetPort: 5672
+  - name: rabbitmq-mgmt
+    port: 15672
+    targetPort: 15672
+  - name: epmd
+    port: 4369
+    targetPort: 4369
+  - name: rabbitmq-stomp
+    port: 15671
+    targetPort: 15671 

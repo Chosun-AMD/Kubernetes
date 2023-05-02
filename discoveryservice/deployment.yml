@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: amd-discoveryservice
+  namespace: amd-discoveryservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amd-discoveryservice
+  template:
+    metadata:
+      labels:
+        app: amd-discoveryservice
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1
+
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+      dnsPolicy: "ClusterFirst"
+      containers:
+      - name: amd-discoveryservice
+        image: ghkdtlwns987/project_amd_discoveryservice
+        ports:
+        - containerPort: 8761
+        env:
+        - name: spring.cloud.config.uri
+          value: "10.96.100.32:8889"
+
