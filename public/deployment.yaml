@@ -38,4 +38,6 @@ spec:
           value: http://10.96.100.33:8000/auth
         - name: spring.user.url
           value: http://10.96.100.33:8000/user
+        - name: spring.user.dashboard
+          value: http://10.96.100.33:8000/react
       nodeName: worker1 

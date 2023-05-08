@@ -5,7 +5,7 @@ metadata:
   namespace: amd-backend-parse
 spec:
   type: ClusterIP
-  clusterIP: 10.96.100.34
+  clusterIP: 10.96.100.36
   selector:
     app: amd-backend-parse
   ports:
