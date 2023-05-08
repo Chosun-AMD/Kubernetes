@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: amd-backend-parse-svc
+  namespace: amd-backend-parse
+spec:
+  type: ClusterIP
+  clusterIP: 10.96.100.34
+  selector:
+    app: amd-backend-parse
+  ports:
+  - port: 9001	# clusterPort
+    targetPort: 9001 # targetPort

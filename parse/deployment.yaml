@@ -1,41 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: amd-front
-  namespace: amd-front
+  name: amd-backend-parse
+  namespace: amd-backend-parse
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: amd-front
+      app: amd-backend-parse
   template:
     metadata:
       labels:
-        app: amd-front
+        app: amd-backend-parse
     spec:
-      nodeSelector:
+      nodeSelector: 
         kubernetes.io/hostname: worker1
       securityContext:
         runAsUser: 0
         runAsGroup: 0
       containers:
-      - name: amd-front
-        image: ghkdtlwns987/project_amd_public
+      - name: amd-backend-parse
+        image: ghkdtlwns987/amd-parse
         ports:
-        - containerPort: 8888
+        - containerPort: 9001
         env:
         - name: eureka.client.serviceUrl.defaultZone
           value: http://10.96.100.30:8761/eureka/
         - name: spring.cloud.config.uri
           value: http://10.96.100.32:8889
-        - name: spring.cloud.config.name
-          value: AMD-accessList
         - name: spring.rabbitmq.host
           value: "10.96.100.31"
         - name: spring.rabbitmq.port
           value: "5672"
-        - name: spring.auth.url
-          value: http://10.96.100.33:8000/auth
-        - name: spring.user.url
-          value: http://10.96.100.33:8000/user
-      nodeName: worker1 
+      nodeName: worker1

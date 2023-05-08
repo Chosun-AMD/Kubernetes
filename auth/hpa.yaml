@@ -1,0 +1,33 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: amd-backend-auth
+  namespace: amd-backend-auth
+  labels:
+    app: amd-backend-auth
+spec:
+  scaleTargetRef:  # Scale Out Target
+    apiVersion: apps/v1
+    kind: Deployment
+    name: amd-backend-auth
+
+  minReplicas: 1
+  maxReplicas: 5
+
+  # AutoScailing
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 10  # CPU 10%
+
+status:
+  observedGeneration: 1
+  currentReplicas: 1
+  desiredReplicas: 3
+  currentMetrics:
+  - type: Resource
+    resource:
+      name: cpu

@@ -5,7 +5,7 @@ metadata:
   namespace: amd-front 
 spec:
   type: NodePort
-  clusterIP: 10.96.200.10
+  clusterIP: 10.96.100.35
   selector: 
     app: amd-front
   ports:
